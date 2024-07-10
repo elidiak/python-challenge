@@ -15,7 +15,7 @@ Greatest Decrease in Profits: Feb-14 ($-1825558)
 
 total_months = 0
 total_profit = 0
-average_profit = 0
+average_change = 0
 greatest_increase_date = 0
 greatest_increse_profit = 0
 greatest_decrease_date = 0
@@ -23,7 +23,8 @@ greatest_decrease_profit = 0
 
 '''Read in the csv file that we need to analyze. There's two columns
 Month and profit or loss'''
-csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
+
+csvpath = os.path.join('..','Resources','budget_data.csv')
 
 with open(csvpath) as csvfile:
 
@@ -39,5 +40,16 @@ with open(csvpath) as csvfile:
     and to calculate the average profit
     '''
     for row in csvreader:
-        print(row)
+        total_months += 1
+        total_profit += row[1]
 
+'''We need to print the results to the terminal'''
+print("Financial Analysis")
+print("----------------------------")
+print(f"Total Months: {total_months}")
+print(f"Total: {total_profit}")
+print(f"Average Change: {average_change}")
+print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increse_profit})")
+print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
+
+'''We need to print the results to a text file'''
