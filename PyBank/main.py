@@ -1,5 +1,5 @@
 #To start off, we need to import several files. Especially Math
-import math
+#import math
 import os
 import csv
 
@@ -31,17 +31,16 @@ csvpath = os.path.join('..','Resources','budget_data.csv')
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
-    csvreader = csv.reader(csvfile, delimiter=',')
+    cvsreader = csv.reader(csvfile, delimiter=',')
 
     #print(csvreader)
 
     # Read the header row first (skip this step if there is no header)
-    csv_header = next(csvreader)
+    csv_header = next(cvsreader)
 
-    ''' Core for each loop needs to interate over the entire loaded file. We need a sum of all profits, a look behind to check for greatest profit increase and decrease
-    and to calculate the average profit
+    ''' We need to read in each value from the csv file. Once that is loaded, we can do work on it
     '''
-    for row in csvreader:
+    for row in cvsreader:
         months.append(row[0])
         profit.append(row(1))
 
