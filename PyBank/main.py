@@ -14,11 +14,13 @@ Greatest Decrease in Profits: Feb-14 ($-1825558)
 '''
 
 total_months = 0
-total_profit = 0
+total_difference = 0
+months = []
+profit = []
 average_change = 0
-greatest_increase_date = 0
+greatest_increase_date = ""
 greatest_increse_profit = 0
-greatest_decrease_date = 0
+greatest_decrease_date = ""
 greatest_decrease_profit = 0
 
 '''Read in the csv file that we need to analyze. There's two columns
@@ -40,14 +42,35 @@ with open(csvpath) as csvfile:
     and to calculate the average profit
     '''
     for row in csvreader:
-        total_months += 1
-        total_profit += row[1]
+        months.append(row[0])
+        profit.append(row(1))
+
+'''Core logic loop to start calcualating the values. We start at months and profit 1, the second row in the csv'''
+i = 1
+
+for i in len(months):
+    
+    #add 1 to total months
+    total_months += 1
+    #calculate the difference for each month from month -1
+    total_difference = total_difference + profit(i)-profit(i-1)
+    #If difference is greater than greatest increase, change the variables
+    if greatest_increase_profit < profit(i) - profit (i-1):
+        greatest_increase_profit = profit(i) - profit(i-1)
+        greatest_increase_date = months(i)
+        #If difference is greater than greatest increase, change the variables
+    if greatest_decrease_profit > profit(i) - profit (i-1):
+        greatest_decrease_profit = profit(i) - profit(i-1)
+        greatest_decrease_date = months(i)
+    
+#calculate average change
+average_change = total_difference / total_months
 
 '''We need to print the results to the terminal'''
 print("Financial Analysis")
 print("----------------------------")
 print(f"Total Months: {total_months}")
-print(f"Total: {total_profit}")
+print(f"Total: {total_difference}")
 print(f"Average Change: {average_change}")
 print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increse_profit})")
 print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
