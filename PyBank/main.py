@@ -26,7 +26,7 @@ greatest_decrease_profit = 0
 '''Read in the csv file that we need to analyze. There's two columns
 Month and profit or loss'''
 
-csvpath = os.path.join('..','Resources','budget_data.csv')
+csvpath = os.path.join(os.getcwd(), 'Resources', "budget_data.csv")
 
 with open(csvpath) as csvfile:
 
@@ -75,3 +75,15 @@ print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_incres
 print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
 
 '''We need to print the results to a text file'''
+output_path = os.path.join(os.getcwd(), 'Analysis', "financial_analysis.txt")
+
+with open(output_path, 'w') as file:
+    #copy of block above to the file
+    file.print("Financial Analysis")
+    file.print("----------------------------")
+    file.print(f"Total Months: {total_months}")
+    file.print(f"Total: {total_difference}")
+    file.print(f"Average Change: {average_change}")
+    file.print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increse_profit})")
+    file.print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
+
