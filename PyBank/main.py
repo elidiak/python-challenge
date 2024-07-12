@@ -13,10 +13,11 @@ Greatest Increase in Profits: Aug-16 ($1862002)
 Greatest Decrease in Profits: Feb-14 ($-1825558)
 '''
 
-total_months = 0
+total_months = 1
 total_difference = 0
-months = []
-profit = []
+current_difference = 0
+previous_month = "Jan-10"
+previous_profit = 1088983
 average_change = 0
 greatest_increase_date = ""
 greatest_increse_profit = 0
@@ -31,36 +32,33 @@ csvpath = os.path.join(os.getcwd(), 'Resources', "budget_data.csv")
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
-    cvsreader = csv.reader(csvfile, delimiter=',')
+    csvreader = csv.reader(csvfile, delimiter=',')
 
     #print(csvreader)
 
     # Read the header row first (skip this step if there is no header)
-    csv_header = next(cvsreader)
+    csv_header = next(csvreader)
+    first_row = next(csvreader)
 
     ''' We need to read in each value from the csv file. Once that is loaded, we can do work on it
     '''
-    for row in cvsreader:
-        months.append(row[0])
-        profit.append(row(1))
-
-'''Core logic loop to start calcualating the values. We start at months and profit 1, the second row in the csv'''
-i = 1
-
-for i in len(months):
-    
-    #add 1 to total months
-    total_months += 1
-    #calculate the difference for each month from month -1
-    total_difference = total_difference + profit(i)-profit(i-1)
-    #If difference is greater than greatest increase, change the variables
-    if greatest_increase_profit < profit(i) - profit (i-1):
-        greatest_increase_profit = profit(i) - profit(i-1)
-        greatest_increase_date = months(i)
+    for row in csvreader:
+        #add 1 to total months
+        total_months += 1
+        #calculate the difference for each month from month -1
+        current_difference = row[1]-previous_profit
+        total_difference = total_difference + current_difference 
         #If difference is greater than greatest increase, change the variables
-    if greatest_decrease_profit > profit(i) - profit (i-1):
-        greatest_decrease_profit = profit(i) - profit(i-1)
-        greatest_decrease_date = months(i)
+        if greatest_increase_profit < current_difference :
+            greatest_increase_profit = current_difference 
+            greatest_increase_date = row[0]
+        #If difference is greater than greatest increase, change the variables
+        if greatest_decrease_profit > current_difference :
+            greatest_decrease_profit = current_difference 
+            greatest_decrease_date = row[0]
+        #Save this row as previous row
+        previous_month = row[0]
+        previous_profit = row[1]
     
 #calculate average change
 average_change = total_difference / total_months
