@@ -20,7 +20,7 @@ previous_month = "Jan-10"
 previous_profit = 1088983
 average_change = 0
 greatest_increase_date = ""
-greatest_increse_profit = 0
+greatest_increase_profit = 0
 greatest_decrease_date = ""
 greatest_decrease_profit = 0
 
@@ -46,7 +46,7 @@ with open(csvpath) as csvfile:
         #add 1 to total months
         total_months += 1
         #calculate the difference for each month from month -1
-        current_difference = row[1]-previous_profit
+        current_difference = int(row[1])- int(previous_profit)
         total_difference = total_difference + current_difference 
         #If difference is greater than greatest increase, change the variables
         if greatest_increase_profit < current_difference :
@@ -69,7 +69,7 @@ print("----------------------------")
 print(f"Total Months: {total_months}")
 print(f"Total: {total_difference}")
 print(f"Average Change: {average_change}")
-print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increse_profit})")
+print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increase_profit})")
 print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
 
 '''We need to print the results to a text file'''
@@ -77,11 +77,11 @@ output_path = os.path.join(os.getcwd(), 'Analysis', "financial_analysis.txt")
 
 with open(output_path, 'w') as file:
     #copy of block above to the file
-    file.print("Financial Analysis")
-    file.print("----------------------------")
-    file.print(f"Total Months: {total_months}")
-    file.print(f"Total: {total_difference}")
-    file.print(f"Average Change: {average_change}")
-    file.print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increse_profit})")
-    file.print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
+    file.write("Financial Analysis")
+    file.write("----------------------------")
+    file.write(f"Total Months: {total_months}")
+    file.write(f"Total: {total_difference}")
+    file.write(f"Average Change: {average_change}")
+    file.write(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increase_profit})")
+    file.write(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease_profit})")
 
