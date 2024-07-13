@@ -1,5 +1,5 @@
 #To start off, we need to import several files. Especially Math
-import math
+#import math
 import os
 import csv
 
@@ -27,7 +27,7 @@ candidate2_name = "Raymon Anthony Doane"
 candidate2_percent = 0.0
 candidate2_votes = 0
 winner_name = ""
-csvpath = os.path.join('..','Resources','election_data.csv')
+csvpath = os.path.join(os.getcwd(),'Resources','election_data.csv')
 
 with open(csvpath) as csvfile:
 
@@ -42,10 +42,18 @@ with open(csvpath) as csvfile:
     ''' Core for each loop needs to count the vote for each candidate, and add to the total vote tally and per candidate tally
     '''
 
-    '''We need to print the results to the terminal'''
+'''Determine the winner'''
+if candidate0_votes > candidate1_votes and candidate0_votes > candidate2_votes :
+    winner_name = candidate0_name
+elif candidate1_votes > candidate0_votes and candidate1_votes > candidate2_votes :
+    winner_name = candidate1_name
+else:
+    winner_name = candidate2_name
+
+'''We need to print the results to the terminal'''
 print("Election Results")
 print("----------------------------")
-print(f"Total Cotes: {total_votes}")
+print(f"Total Votes: {total_votes}")
 print("----------------------------")
 print(f"{candidate0_name}: {candidate0_percent} ({candidate0_votes})")
 print(f"{candidate1_name}: {candidate1_percent} ({candidate1_votes})")
@@ -55,3 +63,17 @@ print(f"Winner: {winner_name}")
 print("----------------------------")
 
 '''We need to print the results to a text file'''
+output_path = os.path.join(os.getcwd(), 'Analysis', "election_results.txt")
+
+with open(output_path, 'w') as file:
+    #copy of block above to the file
+    file.write("Election Results")
+    file.write("----------------------------")
+    file.write(f"Total Votes: {total_votes}")
+    file.write("----------------------------")
+    file.write(f"{candidate0_name}: {candidate0_percent} ({candidate0_votes})")
+    file.write(f"{candidate1_name}: {candidate1_percent} ({candidate1_votes})")
+    file.write(f"{candidate2_name}: {candidate2_percent} ({candidate2_votes})")
+    file.write("----------------------------")
+    file.write(f"Winner: {winner_name}")
+    file.write("----------------------------")
