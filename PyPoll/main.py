@@ -41,6 +41,19 @@ with open(csvpath) as csvfile:
 
     ''' Core for each loop needs to count the vote for each candidate, and add to the total vote tally and per candidate tally
     '''
+    for row in csvreader:
+        if row[0] == candidate0_name:
+            total_votes += 1
+            candidate0_votes += 1
+        elif row[0] == candidate1_name:
+            total_votes += 1
+            candidate1_votes += 1
+        else:
+            total_votes += 1
+            candidate2_votes += 1
+            
+'''Determine vote percentages'''
+
 
 '''Determine the winner'''
 if candidate0_votes > candidate1_votes and candidate0_votes > candidate2_votes :
