@@ -54,9 +54,9 @@ with open(csvpath) as csvfile:
             
 '''Determine vote percentages'''
 if total_votes != 0:
-    candidate0_percent = candidate0_votes / total_votes
-    candidate1_percent = candidate1_votes / total_votes
-    candidate2_percent = candidate2_votes / total_votes
+    candidate0_percent = 100 * (candidate0_votes / total_votes)
+    candidate1_percent = 100 * (candidate1_votes / total_votes)
+    candidate2_percent = 100 * (candidate2_votes / total_votes)
 else:
     print("Total Votes is 0")
 
