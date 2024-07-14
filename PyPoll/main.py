@@ -42,10 +42,10 @@ with open(csvpath) as csvfile:
     ''' Core for each loop needs to count the vote for each candidate, and add to the total vote tally and per candidate tally
     '''
     for row in csvreader:
-        if row[0] == candidate0_name:
+        if row[2] == candidate0_name:
             total_votes += 1
             candidate0_votes += 1
-        elif row[0] == candidate1_name:
+        elif row[2] == candidate1_name:
             total_votes += 1
             candidate1_votes += 1
         else:
@@ -53,7 +53,12 @@ with open(csvpath) as csvfile:
             candidate2_votes += 1
             
 '''Determine vote percentages'''
-
+if total_votes != 0:
+    candidate0_percent = candidate0_votes / total_votes
+    candidate1_percent = candidate1_votes / total_votes
+    candidate2_percent = candidate2_votes / total_votes
+else:
+    print("Total Votes is 0")
 
 '''Determine the winner'''
 if candidate0_votes > candidate1_votes and candidate0_votes > candidate2_votes :
@@ -68,9 +73,9 @@ print("Election Results")
 print("----------------------------")
 print(f"Total Votes: {total_votes}")
 print("----------------------------")
-print(f"{candidate0_name}: {candidate0_percent} ({candidate0_votes})")
-print(f"{candidate1_name}: {candidate1_percent} ({candidate1_votes})")
-print(f"{candidate2_name}: {candidate2_percent} ({candidate2_votes})")
+print(f"{candidate0_name}: {candidate0_percent}% ({candidate0_votes})")
+print(f"{candidate1_name}: {candidate1_percent}% ({candidate1_votes})")
+print(f"{candidate2_name}: {candidate2_percent}% ({candidate2_votes})")
 print("----------------------------")
 print(f"Winner: {winner_name}")
 print("----------------------------")
@@ -84,9 +89,9 @@ with open(output_path, 'w') as file:
     file.write("----------------------------")
     file.write(f"Total Votes: {total_votes}")
     file.write("----------------------------")
-    file.write(f"{candidate0_name}: {candidate0_percent} ({candidate0_votes})")
-    file.write(f"{candidate1_name}: {candidate1_percent} ({candidate1_votes})")
-    file.write(f"{candidate2_name}: {candidate2_percent} ({candidate2_votes})")
+    file.write(f"{candidate0_name}: {candidate0_percent}% ({candidate0_votes})")
+    file.write(f"{candidate1_name}: {candidate1_percent}% ({candidate1_votes})")
+    file.write(f"{candidate2_name}: {candidate2_percent}% ({candidate2_votes})")
     file.write("----------------------------")
     file.write(f"Winner: {winner_name}")
     file.write("----------------------------")
